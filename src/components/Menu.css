@@ -1,0 +1,19 @@
+.Menu {
+    padding-top: 3.5rem;
+}
+
+.menu__schedule {
+    display: inline-block;
+    margin-right: 2.5rem;
+    text-transform: uppercase;
+    font-size: 1.125rem;
+    cursor: pointer;
+}
+
+.menu__schedule:hover {
+    text-decoration: line-through;
+}
+
+.menu__schedule:last-of-type {
+    margin-right: 0;
+}

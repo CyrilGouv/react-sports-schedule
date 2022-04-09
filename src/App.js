@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import Menu from './components/Menu'
+import Sports from './components/Sports'
+
+import './App.css'
+
+import { sports } from './data'
+
+const schedulers = ['all', ...new Set(sports.map(sport => sport.schedule))]
 
 function App() {
+
+  const [lists, setLists] = useState(sports)
+
+  const handleSports = schedule => {
+    if (schedule === 'all') {
+      setLists(sports)
+      return
+    }
+
+    const newList = sports.filter(sport => sport.schedule === schedule)
+    setLists(newList)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
+      <div className="app__wrapper">
+        <h1 className="app__title">Choose your sports below:</h1>
+        <Menu handleSports={ handleSports } schedulers={ schedulers } />
+        <Sports lists={ lists } />
+      </div>
+      
     </div>
-  );
+  )
 }
 
 export default App;
